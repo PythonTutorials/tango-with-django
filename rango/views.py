@@ -10,6 +10,6 @@ def index(request):
 
 def about(request):
     return HttpResponse(
-        '<a href="/rango/">Main</a>'
+        '<a href="/rango/">Index</a>'
         '<h1>Rango says here is the about page.</h1>'
     )
