@@ -53,16 +53,17 @@ def populate():
     ]
 
     categories = {
-        'Python': python_pages,
-        'Django': django_pages,
-        'Other Frameworks': other_pages
+        'Python': {'pages': python_pages, 'views': 128, 'likes': 64},
+        'Django': {'pages': django_pages, 'views': 64, 'likes': 32},
+        'Other Frameworks': {'pages': other_pages, 'views': 32, 'likes': 16},
     }
 
-    for category_name, pages in categories.items():
+    for category_name, attr in categories.items():
         c = Category.objects.get_or_create(name=category_name)[0]
+        c.views, c.likes = attr['views'], attr['likes']
         c.save()
 
-        for page in pages:
+        for page in attr['pages']:
             _ = dict(title=page['title'], url=page['url'], category=c)
             p = Page.objects.get_or_create(**_)[0]
             p.save()
