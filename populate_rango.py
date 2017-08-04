@@ -48,7 +48,7 @@ def populate():
         },
         {
             'title': 'Flask',
-            'url': 'http://flask.pocoo.org'
+            'url': 'http://flask.pocoo.org/'
         }
     ]
 
