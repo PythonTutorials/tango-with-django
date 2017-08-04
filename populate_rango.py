@@ -58,12 +58,12 @@ def populate():
         'Other Frameworks': {'pages': other_pages, 'views': 32, 'likes': 16},
     }
 
-    for category_name, attr in categories.items():
+    for category_name, category_attr in categories.items():
         c = Category.objects.get_or_create(name=category_name)[0]
-        c.views, c.likes = attr['views'], attr['likes']
+        c.views, c.likes = category_attr['views'], category_attr['likes']
         c.save()
 
-        for page in attr['pages']:
+        for page in category_attr['pages']:
             _ = dict(title=page['title'], url=page['url'], category=c)
             p = Page.objects.get_or_create(**_)[0]
             p.save()
