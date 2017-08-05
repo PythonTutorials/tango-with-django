@@ -24,6 +24,8 @@ def show_category(request, slug):
     return render(request, 'rango/show_category.html', context=ctx_dict)
 
 
+# TODO: Check uniqueness of category
+# TODO: No resubmission during refreshing page
 def add_category(request):
     form = CategoryForm()
 
@@ -37,6 +39,7 @@ def add_category(request):
     return render(request, 'rango/add_category.html', {'form': form})
 
 
+# TODO: No resubmission during refreshing page
 def add_page(request, slug):
     category = get_object_or_404(Category, slug=slug)
 
