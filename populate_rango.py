@@ -12,41 +12,49 @@ def populate():
     python_pages = [
         {
             'title': 'Official Python Tutorial',
-            'url': 'http://docs.python.org/2/tutorial/'
+            'url': 'http://docs.python.org/2/tutorial/',
+            'views': 13
         },
         {
             'title': 'How to Think like a Computer Scientist',
-            'url': 'http://www.greenteapress.com/thinkpython/'
+            'url': 'http://www.greenteapress.com/thinkpython/',
+            'views': 33
         },
         {
             'title': 'Learn Python in 10 Minutes',
-            'url': 'http://www.korokithakis.net/tutorials/python/'
+            'url': 'http://www.korokithakis.net/tutorials/python/',
+            'views': 3
         }
     ]
 
     django_pages = [
         {
             'title': 'Official Django Tutorial',
-            'url': 'https://docs.djangoproject.com/en/1.9/intro/tutorial01/'
+            'url': 'https://docs.djangoproject.com/en/1.9/intro/tutorial01/',
+            'views': 66
         },
         {
             'title': 'Django Rocks',
-            'url': 'http://www.djangorocks.com/'
+            'url': 'http://www.djangorocks.com/',
+            'views': 34
         },
         {
             'title': 'How to Tango with Django',
-            'url': 'http://www.tangowithdjango.com/'
+            'url': 'http://www.tangowithdjango.com/',
+            'views': 28
         }
     ]
 
     other_pages = [
         {
             'title': 'Bottle',
-            'url': 'http://bottlepy.org/docs/dev/'
+            'url': 'http://bottlepy.org/docs/dev/',
+            'views': 12
         },
         {
             'title': 'Flask',
-            'url': 'http://flask.pocoo.org/'
+            'url': 'http://flask.pocoo.org/',
+            'views': 43
         }
     ]
 
@@ -62,8 +70,9 @@ def populate():
         c.save()
 
         for page in category_attr['pages']:
-            _ = dict(title=page['title'], url=page['url'], category=c)
+            _ = dict(title=page['title'], url=page['url'])
             p = Page.objects.get_or_create(**_)[0]
+            p.category, p.views = c, page['views']
             p.save()
 
 
