@@ -11,7 +11,7 @@ class CategoryForm(forms.ModelForm):
 
     class Meta:
         model = Category
-        field = ('name',)
+        fields = '__all__'
 
 
 class PageForm(forms.ModelForm):
