@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 
 from rango.models import Category, Page
-from rango.forms import CategoryForm
+from rango.forms import CategoryForm, PageForm
 
 
 def index(request):
@@ -33,7 +33,23 @@ def add_category(request):
         if form.is_valid():
             form.save()
             return index(request)
-        else:
-            print(form.errors)
 
     return render(request, 'rango/add_category.html', {'form': form})
+
+
+def add_page(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+
+    form = PageForm()
+
+    if request.method == 'POST':
+        form = PageForm(request.POST)
+
+        if form.is_valid():
+            page = form.save(commit=False)
+            page.category = category
+            page.save()
+            return show_category(request, slug)
+
+    ctx_dict = {'form': form, 'category': category}
+    return render(request, 'rango/add_page.html', ctx_dict)
