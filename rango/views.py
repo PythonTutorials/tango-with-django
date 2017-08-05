@@ -4,7 +4,10 @@ from rango.models import Category, Page
 
 
 def index(request):
-    ctx_dict = {'categories': Category.objects.order_by('-likes')[:5]}
+    ctx_dict = {
+        'categories': Category.objects.order_by('-likes')[:5],
+        'pages': Page.objects.order_by('-views')[:5]
+    }
     return render(request, 'rango/index.html', context=ctx_dict)
 
 
