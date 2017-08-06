@@ -1,29 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'rango/base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Add Category</title>
-</head>
+{% block title %}
+    Add Category
+{% endblock %}
 
-<body>
-<h1>Add a Category</h1>
-<div>
-    <form method="post" action="{% url 'add_category' %}">
-        {% csrf_token %}
+{% block content %}
+    <h1>Add a Category</h1>
 
-        {% for hidden in form.hidden_fields %}
-            {{ hidden }}
-        {% endfor %}
+    <div>
+        <form method="post" action="{% url 'add_category' %}">
+            {% csrf_token %}
 
-        {% for field in form.visible_fields %}
-            {{ field.errors }}
-            {{ field.help_text }}
-            {{ field }}
-        {% endfor %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
 
-        <input type="submit" value="Create Category">
-    </form>
-</div>
-</body>
-</html>
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+
+            <input type="submit" value="Create Category">
+        </form>
+    </div>
+{% endblock %}

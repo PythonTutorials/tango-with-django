@@ -1,31 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'rango/base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>{{ category.name }}</title>
-</head>
+{% block title %}
+    {{ category.name }}
+{% endblock %}
 
-<body>
-<h1>{{ category.name }}</h1>
-<div>
-    {% if pages %}
-        <ul>
-            {% for page in pages %}
-                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <strong>No pages currently in this category.</strong>
-    {% endif %}
-</div>
+{% block content %}
+    <h1>{{ category.name }}</h1>
+    <div>
+        {% if pages %}
+            <ul>
+                {% for page in pages %}
+                    <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>No pages currently in this category.</strong>
+        {% endif %}
+    </div>
 
-<div>
-    <a href="{% url 'add_page' category.slug %}">Add a New Page</a>
-</div>
-
-<div>
-    <a href="{% url 'index' %}">Index</a>
-</div>
-</body>
-</html>
+    <div>
+        <a href="{% url 'add_page' category.slug %}">Add a New Page</a>
+    </div>
+{% endblock %}
