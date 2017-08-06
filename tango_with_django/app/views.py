@@ -9,11 +9,11 @@ def index(request):
         'categories': Category.objects.order_by('-likes')[:5],
         'pages': Page.objects.order_by('-views')[:5]
     }
-    return render(request, 'rango/index.html', context_dict)
+    return render(request, 'app/index.html', context_dict)
 
 
 def about(request):
-    return render(request, 'rango/about.html')
+    return render(request, 'app/about.html')
 
 
 def show_category(request, slug):
@@ -21,7 +21,7 @@ def show_category(request, slug):
     pages = Page.objects.filter(category=category)
     context_dict = {'category': category, 'pages': pages}
 
-    return render(request, 'rango/show_category.html', context_dict)
+    return render(request, 'app/show_category.html', context_dict)
 
 
 # TODO: Check uniqueness of category
@@ -36,7 +36,7 @@ def add_category(request):
             form.save()
             return index(request)
 
-    return render(request, 'rango/add_category.html', {'form': form})
+    return render(request, 'app/add_category.html', {'form': form})
 
 
 # TODO: No resubmission during refreshing page
@@ -55,4 +55,4 @@ def add_page(request, slug):
             return show_category(request, slug)
 
     context_dict = {'form': form, 'category': category}
-    return render(request, 'rango/add_page.html', context_dict)
+    return render(request, 'app/add_page.html', context_dict)
