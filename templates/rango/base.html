@@ -24,8 +24,9 @@
 
 <div>
     {% block footer %}
-        <a href="{% url 'about' %}">About</a><br>
-        <a href="{% url 'index' %}">Index</a><br>
+        <a href="{% url 'index' %}">Index</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="/admin/">Admin</a><br>
     {% endblock %}
 </div>
 
