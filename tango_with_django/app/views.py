@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 
-from rango.models import Category, Page
-from rango.forms import CategoryForm, PageForm
+from ..app.models import Category, Page
+from ..app.forms import CategoryForm, PageForm
 
 
 def index(request):

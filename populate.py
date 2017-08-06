@@ -4,7 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tango_with_django.settings')
 import django
 django.setup()
 
-from rango.models import Category, Page
+from tango_with_django.app.models import Category, Page
 
 
 def populate():
@@ -70,7 +70,7 @@ def populate():
         c.save()
 
         for page in category_attr['pages']:
-            _ = dict(title=page['title'], url=page['url'])
+            _ = dict(title=page['title'], url=page['url'], category=c)
             p = Page.objects.get_or_create(**_)[0]
             p.category, p.views = c, page['views']
             p.save()

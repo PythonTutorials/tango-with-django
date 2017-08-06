@@ -5,7 +5,7 @@ import django
 django.setup()
 
 import csv
-from rango.models import Category, Page
+from tango_with_django.app.models import Category, Page
 
 
 def output():
