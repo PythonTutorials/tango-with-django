@@ -6,8 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Rango</title>
-    <link rel="stylesheet" href="{% static "css/base.css" %}">
-    <script type="text/javascript" src="{% static "js/jquery.js" %}"></script>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
         <ul>
             {% for category in categories %}
                 <li>
-                    <a href="/rango/category/{{ category.slug }}/">{{ category.name }}</a>
+                    <a href="{% url 'show_category' category.slug %}">{{ category.name }}</a>
                 </li>
             {% endfor %}
         </ul>
@@ -49,12 +49,12 @@
 </div>
 
 <div>
-    <a href="/rango/add_category/">Add a New Category</a>
+    <a href="{% url 'add_category' %}">Add a New Category</a>
 </div>
 
 <div>
-    <a href="/rango/about/">About Rango</a><br>
-    <img src="{% static "img/rango.jpg" %}" alt="Picture of Rango">
+    <a href="{% url 'about' %}">About Rango</a><br>
+    <img src="{% static 'img/rango.jpg' %}" alt="Picture of Rango">
 </div>
 </body>
 </html>

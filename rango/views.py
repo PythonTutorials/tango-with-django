@@ -5,11 +5,11 @@ from rango.forms import CategoryForm, PageForm
 
 
 def index(request):
-    ctx_dict = {
+    context_dict = {
         'categories': Category.objects.order_by('-likes')[:5],
         'pages': Page.objects.order_by('-views')[:5]
     }
-    return render(request, 'rango/index.html', context=ctx_dict)
+    return render(request, 'rango/index.html', context_dict)
 
 
 def about(request):
@@ -19,9 +19,9 @@ def about(request):
 def show_category(request, slug):
     category = get_object_or_404(Category, slug=slug)
     pages = Page.objects.filter(category=category)
-    ctx_dict = {'category': category, 'pages': pages}
+    context_dict = {'category': category, 'pages': pages}
 
-    return render(request, 'rango/show_category.html', context=ctx_dict)
+    return render(request, 'rango/show_category.html', context_dict)
 
 
 # TODO: Check uniqueness of category
@@ -54,5 +54,5 @@ def add_page(request, slug):
             page.save()
             return show_category(request, slug)
 
-    ctx_dict = {'form': form, 'category': category}
-    return render(request, 'rango/add_page.html', ctx_dict)
+    context_dict = {'form': form, 'category': category}
+    return render(request, 'rango/add_page.html', context_dict)
